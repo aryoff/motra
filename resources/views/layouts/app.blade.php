@@ -26,18 +26,12 @@
 
 </head>
 
-@auth
-    <body class="hold-transition sidebar-mini layout-fixed dark-mode">
-@else
-    <body class="layout-top-nav">
-@endauth
+<body class="layout-top-nav" id="body">
 
 <div id="app" class="wrapper">
-    @if (asset(config('app.icon', '')) != '')
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="images/147_white.png" alt="preloaderLogo" height="60" width="60">
-        </div>
-    @endif
+    <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="images/147_white.png" alt="preloaderLogo" height="127" width="468">
+    </div>
     <!-- Navbar -->
     @include('layouts.header')
 

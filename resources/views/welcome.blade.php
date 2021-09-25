@@ -17,7 +17,7 @@
                                 <span class="info-box-text">Total Complain</span>
                                 <span class="info-box-number h5" id="totalKomplain">0</span>
                             </div>
-                            <span class="info-box-icon">%</span>
+                            <span class="info-box-icon"><span id="percentTotalKomplain">0</span> %</span>
                         </div>
                         <div class="card">
                             <div class="card-footer bg-white p-0">
@@ -52,7 +52,7 @@
                                 <span class="info-box-text">Total Registrasi Informasi</span>
                                 <span class="info-box-number h5" id="totalRegInfo">0</span>
                             </div>
-                            <span class="info-box-icon">%</span>
+                            <span class="info-box-icon"><span id="percentTotalRegInfo">0</span> %</span>
                         </div>
                         <div class="card">
                             <div class="card-footer bg-white p-0">
@@ -588,7 +588,7 @@
                                                         <i class="ion ion-ios-refresh-empty" aria-hidden="true"></i>
                                                     </p>
                                                     <p class="d-flex flex-column text-left">
-                                                        <span class="font-weight-bold" id="avgTimeToPickup">
+                                                        <span class="font-weight-bold">
                                                             <i class="ion ion-android-arrow-up text-success" aria-hidden="true"></i><span id="avgTimeToPickup">00:00:00</span></span>
                                                         <span class="text-muted">Average Time to Pick-Up</span>
                                                     </p>
@@ -633,7 +633,7 @@
                                     </p>
                                     <p class="ml-auto d-flex flex-column text-right">
                                         <span class="text-success">
-                                            <i class="fas fa-calendar" aria-hidden="true"></i> Last Updated  </span>
+                                            <i class="fas fa-calendar" aria-hidden="true"></i> Last Updated  <span class="font-weight-bold"><span id="lastUpdateH">0</span>:<span id="lastUpdateM">0</span></span></span>
                                         <span class="text-muted">Traffic Trend Today</span>
                                     </p>
                                 </div>

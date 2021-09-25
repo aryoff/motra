@@ -19,8 +19,11 @@ class Wallboard147 extends Controller
         }
         $detail_sephia = $this->detail_sephia();
         $detail_sephia_mtd_sisa = $this->detail_sephia_mtd_sisa();
+        date_default_timezone_set('Asia/Jakarta');
+        $t = time();
         $response['singleNum'] = array(
             'totalKomplain' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'],
+            'percentTotalKomplain' => $this->percentage($total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'] + $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'komplainIna' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'],
             'percentKomplainIna' => $this->percentage($total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'komplainEng' => $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'],
@@ -34,6 +37,7 @@ class Wallboard147 extends Controller
             'komplainAbnIna' => $total_skill_cms[2]['abncalls'],
             'komplainAbnEng' => $total_skill_cms[5]['abncalls'],
             'totalRegInfo' => $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'],
+            'percentTotalRegInfo' => $this->percentage($total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'] + $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'regInfoAcd' => $total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'],
             'percentRegInfoAcd' => $this->percentage($total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'regInfoAbn' => $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['abncalls'],
@@ -62,11 +66,12 @@ class Wallboard147 extends Controller
             'sephiaMTDJunk' => $detail_sephia_mtd_sisa->junk,
             'sephiaMTDSisaOrder' => $detail_sephia_mtd_sisa->onprogress + $detail_sephia_mtd_sisa->unconsumed,
             'sephiaMTDRecall' => $detail_sephia_mtd_sisa->connected_to_t1,
-            'sephiaMTD' => $detail_sephia_mtd_sisa->onprogress + $detail_sephia_mtd_sisa->unconsumed + $detail_sephia_mtd_sisa->connected_to_t1 + $detail_sephia_mtd_sisa->contacted + $detail_sephia_mtd_sisa->rna + $detail_sephia_mtd_sisa->junk
+            'sephiaMTD' => $detail_sephia_mtd_sisa->onprogress + $detail_sephia_mtd_sisa->unconsumed + $detail_sephia_mtd_sisa->connected_to_t1 + $detail_sephia_mtd_sisa->contacted + $detail_sephia_mtd_sisa->rna + $detail_sephia_mtd_sisa->junk,
+            'lastUpdateH' => date("H", $t),
+            'lastUpdateM' => date("i", $t)
         );
         $response['avgTimeToPickup'] = $this->avg_time_to_pickup()->average;
         $response['dailyInterval'] = $this->daily_interval();
-
         return response()->json($response, 200);
     }
 
