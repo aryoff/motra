@@ -752,13 +752,14 @@
             }
     });
 
-
+    var originalHeight;
     window.onresize = function (event) {
         if((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
             document.getElementById("navbar").style.top = "-20px";
+            originalHeight = document.getElementById("navbar").style.height;
             document.getElementById("navbar").style.height = "10px";
         } else {
-            document.getElementById("navbar").style.height = "57px";
+            document.getElementById("navbar").style.height = originalHeight;
             document.getElementById("navbar").style.top = "0";
         }
     }
