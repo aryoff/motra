@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="transition: 0.4s;" id="navbar">
+<nav class="main-header navbar navbar-expand navbar-light" style="transition: 0.4s;" id="navbar">
     <ul class="navbar-nav mr-auto">
     </ul>
     <ul class="navbar-nav ml-auto">

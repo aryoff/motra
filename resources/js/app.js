@@ -35,10 +35,21 @@ window.populate_data_wallboard = function () {
                 darkTime = (data.singleNum['lastUpdateH'] < 6 || data.singleNum['lastUpdateH'] > 17);
             }
             if (themeSwitchFlag) {
+                let navItem = document.getElementsByClassName("nav-item");
                 if (darkTime) {
                     document.getElementById("body").classList.add("dark-mode");
+                    document.getElementById("navbar").classList.remove("navbar-light");
+                    document.getElementById("navbar").classList.add("navbar-dark");
+                    for (let value of navItem) {
+                        value.classList.add("navbar-dark");
+                    }
                 } else {
                     document.getElementById("body").classList.remove("dark-mode");
+                    document.getElementById("navbar").classList.remove("navbar-dark");
+                    document.getElementById("navbar").classList.add("navbar-light");
+                    for (let value of navItem) {
+                        value.classList.remove("navbar-dark");
+                    }
                 }
                 themeSwitchFlag = !themeSwitchFlag;
             }
