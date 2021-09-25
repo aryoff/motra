@@ -21,7 +21,6 @@ window.populate_data_wallboard = function () {
         type: "GET",
         dataType: 'json',
         success: function (data) {
-            console.log(data);
             Object.entries(data.singleNum).forEach(([key, value]) => {
                 animate_counter('#'+key, parseInt(value));
             });
