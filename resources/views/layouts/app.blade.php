@@ -12,8 +12,7 @@
     <title>
         {{ config('app.name', 'Laravel') }}
     </title>
-    <link rel="icon" href="images/147_white.png"
-        type="'image/x-icon'" />
+    <link rel="icon" href="images/147_icon.png" type="'image/png'" />
 
     <!-- Styles -->
     <link href="{{ mix('css/vendor.css') }}" type="text/css" rel="stylesheet">
