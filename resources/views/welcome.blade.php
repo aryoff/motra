@@ -107,13 +107,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <!-- handle by agent T1 -->
-                                <div class="info-box mb-3 bg-success">
+                                <div class="info-box mb-3 bg-danger">
                                     <span class="info-box-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Handle By Agent T1 Komplain</span>
                                         <span class="info-box-number"></span>
                                     </div>
-                                    <span class="info-box-icon">%</span>
+                                    {{-- <span class="info-box-icon">%</span> --}}
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-12">
