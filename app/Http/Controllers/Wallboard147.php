@@ -19,6 +19,8 @@ class Wallboard147 extends Controller
         }
         $detail_sephia = $this->detail_sephia();
         $detail_sephia_mtd_sisa = $this->detail_sephia_mtd_sisa();
+        $detail_ivr = $this->detail_ivr();
+        $smart_ivr_keylog = $this->smart_ivr_keylog();
         date_default_timezone_set('Asia/Jakarta');
         $t = time();
         $response['singleNum'] = array(
@@ -56,6 +58,8 @@ class Wallboard147 extends Controller
             'sephiaCDJunk' => $detail_sephia->junk,
             'sephiaCDSisaOrder' => $detail_sephia->onprogress + $detail_sephia->unconsumed,
             'sephiaCDRecall' => $detail_sephia->connected_to_t1,
+            'sephiaCDFCR' => $detail_sephia->fcr,
+            'sephiaCDTicketing' => $detail_sephia->tiketing,
             'sephiaCD' => $detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk,
             'totAllIVRQueue' => $detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk,
             'percentSephiaCDAndTotal' => $this->percentage($detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk, $detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk + $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
@@ -68,7 +72,25 @@ class Wallboard147 extends Controller
             'sephiaMTDJunk' => $detail_sephia_mtd_sisa->junk,
             'sephiaMTDSisaOrder' => $detail_sephia_mtd_sisa->onprogress + $detail_sephia_mtd_sisa->unconsumed,
             'sephiaMTDRecall' => $detail_sephia_mtd_sisa->connected_to_t1,
+            'sephiaMTDFCR' => $detail_sephia_mtd_sisa->fcr,
+            'sephiaMTDTicketing' => $detail_sephia_mtd_sisa->tiketing,
             'sephiaMTD' => $detail_sephia_mtd_sisa->onprogress + $detail_sephia_mtd_sisa->unconsumed + $detail_sephia_mtd_sisa->connected_to_t1 + $detail_sephia_mtd_sisa->contacted + $detail_sephia_mtd_sisa->rna + $detail_sephia_mtd_sisa->junk,
+            'inaIVRInputCallback' => $detail_ivr->ina_input_callback,
+            'inaIVRTidakInputCallback' => $detail_ivr->ina_tidak_input_callback,
+            'inaIVRTotal' => $detail_ivr->ina_input_callback + $detail_ivr->ina_tidak_input_callback,
+            'percentInaIVRTotal' => $this->percentage($detail_ivr->ina_input_callback + $detail_ivr->ina_tidak_input_callback, $detail_ivr->ina_input_callback + $detail_ivr->ina_tidak_input_callback),
+            'gamasIna' => $smart_ivr_keylog->gamas_ina,
+            'isolirIna' => $smart_ivr_keylog->isolir_ina,
+            'fupIna' => $smart_ivr_keylog->fup_ina,
+            'fuAgentIna' => $smart_ivr_keylog->fu_agent_ina,
+            'gamasEnng' => $smart_ivr_keylog->gamas_eng,
+            'isolirEng' => $smart_ivr_keylog->isolir_eng,
+            'fupEng' => $smart_ivr_keylog->fup_eng,
+            'fuAgentEng' => $smart_ivr_keylog->fu_agent_eng,
+            'summaryAnswered' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[5]['acdcalls'],
+            'summaryAbandoned' => $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['abncalls'],
+            'summaryIVRInputCallback' => $detail_ivr->ina_input_callback,
+            'summaryIVRTidakInputCallback' => $detail_ivr->ina_tidak_input_callback,
             'lastUpdateH' => date("H", $t),
             'lastUpdateM' => date("i", $t)
         );
@@ -96,9 +118,14 @@ class Wallboard147 extends Controller
         return DB::connection('sephia_pgsql')->select("SELECT concat (CASE WHEN ((COALESCE (AVG,0) :: INTEGER/60)/60)< 10 THEN '0' ELSE '' END,((COALESCE (AVG,0) :: INTEGER/60)/60),':',CASE WHEN ((COALESCE (AVG,0) :: INTEGER/60) % 60)< 10 THEN '0' ELSE '' END,((COALESCE (AVG,0) :: INTEGER/60) % 60),':',CASE WHEN (COALESCE (AVG,0) :: INTEGER % 60)< 10 THEN '0' ELSE '' END,(COALESCE (AVG,0) :: INTEGER % 60)) AS average FROM (SELECT FLOOR (AVG (((DATE_PART('day',datetime_callback-to_timestamp((dynamic_ticket_data.DATA->> 'datetime') :: FLOAT) :: TIMESTAMP)*24+DATE_PART ('hour',datetime_callback-to_timestamp((dynamic_ticket_data.DATA->> 'datetime') :: FLOAT) :: TIMESTAMP))*60+DATE_PART ('minute',datetime_callback-to_timestamp((dynamic_ticket_data.DATA->> 'datetime') :: FLOAT) :: TIMESTAMP))*60+DATE_PART ('second',datetime_callback-to_timestamp((dynamic_ticket_data.DATA->> 'datetime') :: FLOAT) :: TIMESTAMP))) AS AVG FROM (SELECT no_tiket,MIN (datetime_callback) AS datetime_callback FROM callback_manja WHERE date_callback=CURRENT_DATE AND \"order\"=2 GROUP BY no_tiket) callback_manja INNER JOIN dynamic_ticket_data ON callback_manja.no_tiket=dynamic_ticket_data.unique_key->> 'serial_increment' AND DATA->> 'source'='ivr_gamas' AND (DATA->> 'datetime') :: FLOAT> EXTRACT (EPOCH FROM to_timestamp(concat (CURRENT_DATE,' 08:00:00'),'YYYY-MM-DD HH:MI:SS'))) TEMP")[0];
     }
 
+    function smart_ivr_keylog()
+    {
+        return DB::connection('sephia_pgsql')->select("SELECT COALESCE (SUM (CASE WHEN lang='3' AND node='S012' THEN 1 ELSE 0 END),0) AS gamas_ina,COALESCE (SUM (CASE WHEN lang='3' AND node='S013' THEN 1 ELSE 0 END),0) AS isolir_ina,COALESCE (SUM (CASE WHEN lang='3' AND node='S014' THEN 1 ELSE 0 END),0) AS fup_ina,COALESCE (SUM (CASE WHEN lang='13' AND node='S012' THEN 1 ELSE 0 END),0) AS gamas_eng,COALESCE (SUM (CASE WHEN lang='13' AND node='S013' THEN 1 ELSE 0 END),0) AS isolir_eng,COALESCE (SUM (CASE WHEN lang='13' AND node='S014' THEN 1 ELSE 0 END),0) AS fup_eng,COALESCE (SUM (CASE WHEN lang='3' AND node IN ('S900','S901','S902','S903','S904','S905') THEN 1 ELSE 0 END),0) AS fu_agent_ina,COALESCE (SUM (CASE WHEN lang='13' AND node IN ('S900','S901','S902','S903','S904','S905') THEN 1 ELSE 0 END),0) AS fu_agent_eng FROM keylog WHERE DATE :: DATE=CURRENT_DATE")[0];
+    }
+
     function detail_ivr()
     {
-        return DB::connection('sephia_pgsql')->select("SELECT SUM(CASE WHEN (data->>'j_gangguan' <> '' AND data->>'no_fastel1' <> '') THEN 1 ELSE 0 END) AS ina_input_callback,SUM(CASE WHEN NOT (data->>'j_gangguan' <> '' AND data->>'no_fastel1' <> '') THEN 1 ELSE 0 END) AS ina_tidak_input_callback FROM dynamic_ticket_data WHERE (data->>'date')::DATE = CURRENT_DATE AND data->>'source' = 'ivr_gamas'");
+        return DB::connection('sephia_pgsql')->select("SELECT COALESCE(SUM(CASE WHEN (data->>'j_gangguan' <> '' AND data->>'no_fastel1' <> '') THEN 1 ELSE 0 END),0) AS ina_input_callback,COALESCE(SUM(CASE WHEN NOT (data->>'j_gangguan' <> '' AND data->>'no_fastel1' <> '') THEN 1 ELSE 0 END),0) AS ina_tidak_input_callback FROM dynamic_ticket_data WHERE (data->>'date')::DATE = CURRENT_DATE AND data->>'source' = 'ivr_gamas'")[0];
     }
 
     function detail_sephia()

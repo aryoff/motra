@@ -20,7 +20,7 @@
                             <span class="info-box-icon"><span id="percentTotalKomplain">0</span> %</span>
                         </div>
                         <div class="card">
-                            <div class="card-footer bg-white p-0">
+                            <div class="card-footer p-0">
                                 <ul class="nav nav-pills flex-column">
                                     {{-- <li class="nav-item">
                                         <a href="#" class="nav-link"> IVR - Queue <span class="float-right text-success"> [%]</span>
@@ -51,7 +51,7 @@
                             <span class="info-box-icon"><span id="percentTotalRegInfo">0</span> %</span>
                         </div>
                         <div class="card">
-                            <div class="card-footer bg-white p-0">
+                            <div class="card-footer p-0">
                                 <ul class="nav nav-pills flex-column">
                                     {{-- <li class="nav-item">
                                         <a href="#" class="nav-link"> IVR - Queue <span class="float-right text-success"> [%]</span>
@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-footer bg-white p-0">
+                            <div class="card-footer p-0">
                                 <ul class="nav nav-pills flex-column">
                                     <li class="nav-item">
                                         <a href="#" class="nav-link"> IVR Queue<span class="float-right text-success"><span id="totAllIVRQueue">0</span> [<span id="percentSephiaCDAndTotal">0</span> %]</span>
@@ -140,7 +140,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-12">
                                         <div class="card">
-                                            <div class="card-footer bg-white p-0">
+                                            <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
                                                         <a href="#" class="nav-link"> Answered <span class="float-right text-success" id="komplainAcdEng"></span>
@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-12">
                                         <div class="card">
-                                            <div class="card-footer bg-white p-0">
+                                            <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
                                                         <a href="#" class="nav-link"> Answered <span class="float-right text-success" id="komplainAcdIna"></span>
@@ -207,7 +207,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-12">
                                         <div class="card">
-                                            <div class="card-footer bg-white p-0">
+                                            <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
                                                         <a href="#" class="nav-link"> Handle by Agent <span class="float-right text-success"></span>
@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-12">
                                         <div class="card">
-                                            <div class="card-footer bg-white p-0">
+                                            <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
                                                         <a href="#" class="nav-link"> Handle by Agent <span class="float-right text-success"></span>
@@ -249,7 +249,7 @@
                                         <span class="info-box-text">Handle By IVR</span>
                                         <span class="info-box-number"></span>
                                     </div>
-                                    <span class="info-box-icon">%</span>
+                                    {{-- <span class="info-box-icon">%</span> --}}
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-12">
@@ -257,9 +257,9 @@
                                             <span class="info-box-icon bg-fuchsia">ENG</span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Skill</span>
-                                                <span class="info-box-number"></span>
+                                                <span class="info-box-number" id="engIVRTotal">0</span>
                                             </div>
-                                            <span class="info-box-icon">%</span>
+                                            <span class="info-box-icon"><span id="percentEngIVRTotall">0</span> %</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-12">
@@ -267,23 +267,23 @@
                                             <span class="info-box-icon bg-purple">INA</span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Skill</span>
-                                                <span class="info-box-number"></span>
+                                                <span class="info-box-number" id="inaIVRTotal">0</span>
                                             </div>
-                                            <span class="info-box-icon">%</span>
+                                            <span class="info-box-icon"><span id="percentInaIVRTotall">0</span> %</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-12">
                                         <div class="card">
-                                            <div class="card-footer bg-white p-0">
+                                            <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> IVR Success <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link"> IVR Success <span class="float-right text-success" id="engIVRInputCallback">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Customer Reject <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link"> Customer Reject <span class="float-right text-success" id="engIVRTidakInputCallback">0</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -292,14 +292,14 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-12">
                                         <div class="card">
-                                            <div class="card-footer bg-white p-0">
+                                            <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> IVR Success <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link"> IVR Success <span class="float-right text-success" id="inaIVRInputCallback">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Customer Reject <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link"> Customer Reject <span class="float-right text-success" id="inaIVRTidakInputCallback">0</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -315,9 +315,9 @@
                                     <span class="info-box-icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Handling By SMART IVR</span>
-                                        <span class="info-box-number"></span>
+                                        <span class="info-box-number">0</span>
                                     </div>
-                                    <span class="info-box-icon">%</span>
+                                    <span class="info-box-icon"><span>0</span>%</span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-12">
@@ -325,9 +325,9 @@
                                             <span class="info-box-icon bg-fuchsia">ENG</span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Skill</span>
-                                                <span class="info-box-number"></span>
+                                                <span class="info-box-number">0</span>
                                             </div>
-                                            <span class="info-box-icon">%</span>
+                                            <span class="info-box-icon"><span>0</span>%</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-12">
@@ -335,35 +335,35 @@
                                             <span class="info-box-icon bg-purple">INA</span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Skill</span>
-                                                <span class="info-box-number"></span>
+                                                <span class="info-box-number">0</span>
                                             </div>
-                                            <span class="info-box-icon">%</span>
+                                            <span class="info-box-icon"><span>0</span> %</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-12">
                                         <div class="card">
-                                            <div class="card-footer bg-white p-0">
+                                            <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> GAMAS <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> GAMAS <span class="float-right text-success" id="gamasEng">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> ISOLIR <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> ISOLIR <span class="float-right text-success" id="isolirEng">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> FUP/QUOTA <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> FUP/QUOTA <span class="float-right text-success" id="fupEng">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Pelanggan Selesai <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> Cust Done <span class="float-right text-success" id="custDoneEng">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Pelanggan Masuk Agent <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> FU Agent <span class="float-right text-success" id="fuAgentEng">0</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -372,26 +372,26 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-12">
                                         <div class="card">
-                                            <div class="card-footer bg-white p-0">
+                                            <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> GAMAS <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> GAMAS <span class="float-right text-success" id="gamasIna">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> ISOLIR <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> ISOLIR <span class="float-right text-success" id="isolirIna">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> FUP/QUOTA <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> FUP/QUOTA <span class="float-right text-success" id="fupIna">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Pelanggan Selesai <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> Cust Done <span class="float-right text-success" id="custDoneIna">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Pelanggan Masuk Agent <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link py-1"> FU Agent <span class="float-right text-success" id="fuAgentIna">0</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -456,12 +456,12 @@
                                             <div class="col-7">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <span class="float-left">Ticketing</span> <span class="float-right mr-2"></span>
+                                                        <span class="float-left">Ticketing</span> <span class="float-right mr-2" id="sephiaCDTicketing">0</span>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <span class="float-left">FCR</span> <span class="float-right mr-2"></span>
+                                                        <span class="float-left">FCR</span> <span class="float-right mr-2" id="sephiaCDFCR">0</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -526,12 +526,12 @@
                                             <div class="col-7">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <span class="float-left text-white">Ticketing</span> <span class="float-right mr-2 text-white"></span>
+                                                        <span class="float-left text-white">Ticketing</span> <span class="float-right mr-2 text-white" id="sephiaMTDTicketing">0</span>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <span class="float-left text-white">FCR</span> <span class="float-right mr-2 text-white"></span>
+                                                        <span class="float-left text-white">FCR</span> <span class="float-right mr-2 text-white" id="sephiaMTDFCR">0</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -547,7 +547,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <div class="d-flex border-bottom mb-1">
+                                                <div class="d-flex mb-1">
                                                     <p class="text-success text-xl">
                                                         <i class="ion ion-ios-refresh-empty" aria-hidden="true"></i>
                                                     </p>
@@ -557,29 +557,19 @@
                                                         <span class="text-muted">&nbsp</span>
                                                     </p>
                                                 </div>
-                                                <div class="d-flex border-bottom mb-1">
-                                                    <p class="text-success text-xl">
-                                                        <i class="ion ion-ios-refresh-empty" aria-hidden="true"></i>
-                                                    </p>
-                                                    <p class="d-flex flex-column text-left">
-                                                        <span class="font-weight-bold">
-                                                            <i class="ion ion-android-arrow-up text-success" aria-hidden="true"></i> </span>
-                                                        <span class="text-muted">Summary Answered</span>
-                                                    </p>
+                                                <div class="row">
+                                                    <div class="col border-bottom border-top pb-2">
+                                                        <span class="text-muted float-left">Summary Answered</span><span class="float-right" id="summaryAnswered">0</span>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex border-bottom mb-1">
-                                                    <p class="text-warning text-xl">
-                                                        <i class="ion ion-ios-cart-outline" aria-hidden="true"></i>
-                                                    </p>
-                                                    <p class="d-flex flex-column text-left">
-                                                        <span class="font-weight-bold">
-                                                            <i class="ion ion-android-arrow-up text-warning" aria-hidden="true"></i> </span>
-                                                        <span class="text-muted">Summary Abandon</span>
-                                                    </p>
+                                                <div class="row">
+                                                    <div class="col border-bottom pb-2">
+                                                        <span class="text-muted float-left">Summary Abandon</span><span class="float-right" id="summaryAbandoned">0</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <div class="d-flex border-bottom mb-1">
+                                                <div class="d-flex mb-1">
                                                     <p class="text-success text-xl">
                                                         <i class="ion ion-ios-refresh-empty" aria-hidden="true"></i>
                                                     </p>
@@ -589,25 +579,15 @@
                                                         <span class="text-muted">Average Time to Pick-Up</span>
                                                     </p>
                                                 </div>
-                                                <div class="d-flex border-bottom mb-1">
-                                                    <p class="text-warning text-xl">
-                                                        <i class="ion ion-ios-cart-outline" aria-hidden="true"></i>
-                                                    </p>
-                                                    <p class="d-flex flex-column text-left">
-                                                        <span class="font-weight-bold">
-                                                            <i class="ion ion-android-arrow-up text-warning" aria-hidden="true"></i>  </span>
-                                                        <span class="text-muted">Summary Input Callback</span>
-                                                    </p>
+                                                <div class="row">
+                                                    <div class="col border-bottom border-top pb-2">
+                                                        <span class="text-muted float-left">Summary Input Callback</span><span class="float-right" id="summaryIVRInputCallback">0</span>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex border-bottom mb-0">
-                                                    <p class="text-danger text-xl">
-                                                        <i class="ion ion-ios-people-outline" aria-hidden="true"></i>
-                                                    </p>
-                                                    <p class="d-flex flex-column text-left">
-                                                        <span class="font-weight-bold">
-                                                            <i class="ion ion-android-arrow-down text-danger" aria-hidden="true"></i> </span>
-                                                        <span class="text-muted">Summary Tidak Input Callback</span>
-                                                    </p>
+                                                <div class="row">
+                                                    <div class="col border-bottom pb-2">
+                                                        <span class="text-muted float-left">Summary Tidak Input Callback</span><span class="float-right" id="summaryIVRTidakInputCallback">0</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -633,7 +613,7 @@
                                         <span class="text-muted">Traffic Trend Today</span>
                                     </p>
                                 </div>
-                                <div class="position-relative mb-4" style="height:200px;">
+                                <div class="position-relative mb-4" style="height:230px;">
                                     <canvas id="traffic-chart"></canvas>
                                 </div>
                                 <div class="d-flex flex-row justify-content-end">
@@ -751,12 +731,14 @@
     var originalHeight;
     window.onresize = function (event) {
         if((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
-            document.getElementById("navbar").style.top = "-20px";
+            document.getElementById("navbar").style.top = "-30px";
             originalHeight = document.getElementById("navbar").style.height;
             document.getElementById("navbar").style.height = "10px";
+            document.getElementById("footer").style.display = "none";
         } else {
             document.getElementById("navbar").style.height = originalHeight;
             document.getElementById("navbar").style.top = "0";
+            document.getElementById("footer").style.display = "block";
         }
     }
 
