@@ -12,8 +12,8 @@
     <title>
         {{ config('app.name', 'Laravel') }}
     </title>
-    <link rel="icon" href="{{ asset(config('app.icon', 'favicon.ico')) }}"
-        type="{{ config('app.icon_type', 'image/x-icon') }}" />
+    <link rel="icon" href="images/147_white.png"
+        type="'image/x-icon'" />
 
     <!-- Styles -->
     <link href="{{ mix('css/vendor.css') }}" type="text/css" rel="stylesheet">
@@ -35,7 +35,7 @@
 <div id="app" class="wrapper">
     @if (asset(config('app.icon', '')) != '')
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset(config('app.icon', '')) }}" alt="preloaderLogo" height="60" width="60">
+            <img class="animation__shake" src="images/147_white.png" alt="preloaderLogo" height="60" width="60">
         </div>
     @endif
     <!-- Navbar -->
