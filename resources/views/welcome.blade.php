@@ -31,11 +31,11 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"> Agent T1 <span class="float-right text-success"><span id="komplainAcd">0</span> [<span>0</span>%]</span>
+                                        <a href="#" class="nav-link"> Agent T1 <span class="float-right text-success"><span id="komplainAcd">0</span> [<span id="percentKomplainAcd">0</span>%]</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success"><span id="komplainAbn">0</span> [<span>0</span>%]</span>
+                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success"><span id="komplainAbn">0</span> [<span id="percentKomplainAbn">0</span>%]</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -62,11 +62,11 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"> Agent T1 <span class="float-right text-success"><span id="regInfoAcd">0</span> [<span>0</span>%]</span>
+                                        <a href="#" class="nav-link"> Agent T1 <span class="float-right text-success"><span id="regInfoAcd">0</span> [<span id="percentRegInfoAcd">0</span>%]</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success"><span id="regInfoAbn">0</span> [<span>0</span>%]</span>
+                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success"><span id="regInfoAbn">0</span> [<span id="percentRegInfoAbn">0</span>%]</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -92,11 +92,11 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"> Agent T1 <span class="float-right text-success"><span id="totAllAcd">0</span> [<span>0</span>%]</span>
+                                        <a href="#" class="nav-link"> Agent T1 <span class="float-right text-success"><span id="totAllAcd">0</span> [<span id="percentTotAllAcd">0</span>%]</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success"><span id="totAllAbn">0</span> [<span>0</span>%]</span>
+                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success"><span id="totAllAbn">0</span> [<span id="percentTotAllAbn">0</span>%]</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -127,7 +127,7 @@
                                                 <span class="info-box-text">Skill</span>
                                                 <span class="info-box-number" id="komplainEng"></span>
                                             </div>
-                                            <span class="info-box-icon">%</span>
+                                            <span class="info-box-icon"><span id="percentKomplainEng">0</span> %</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-12">
@@ -137,7 +137,7 @@
                                                 <span class="info-box-text">Skill</span>
                                                 <span class="info-box-number" id="komplainIna"></span>
                                             </div>
-                                            <span class="info-box-icon">%</span>
+                                            <span class="info-box-icon"><span id="percentKomplainIna">0</span> %</span>
                                         </div>
                                     </div>
                                 </div>

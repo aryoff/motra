@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Type\Integer;
 
 class Wallboard147 extends Controller
 {
@@ -21,19 +22,27 @@ class Wallboard147 extends Controller
         $response['singleNum'] = array(
             'totalKomplain' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'],
             'komplainIna' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'],
+            'percentKomplainIna' => $this->percentage($total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'komplainEng' => $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'],
+            'percentKomplainEng' => $this->percentage($total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'komplainAcd' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[5]['acdcalls'],
+            'percentKomplainAcd' => $this->percentage($total_skill_cms[2]['acdcalls'] + $total_skill_cms[5]['acdcalls'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'komplainAcdIna' => $total_skill_cms[2]['acdcalls'],
             'komplainAcdEng' => $total_skill_cms[5]['acdcalls'],
             'komplainAbn' => $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['abncalls'],
+            'percentKomplainAbn' => $this->percentage($total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['abncalls'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'komplainAbnIna' => $total_skill_cms[2]['abncalls'],
             'komplainAbnEng' => $total_skill_cms[5]['abncalls'],
             'totalRegInfo' => $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'],
             'regInfoAcd' => $total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'],
+            'percentRegInfoAcd' => $this->percentage($total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'regInfoAbn' => $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['abncalls'],
+            'percentRegInfoAbn' => $this->percentage($total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['abncalls'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'totAll' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'],
             'totAllAcd' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'],
+            'percentTotAllAcd' => $this->percentage($total_skill_cms[2]['acdcalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'totAllAbn' => $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['abncalls'],
+            'percentTotAllAbn' => $this->percentage($total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['abncalls'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'sephiaCDUnconfirmed' => $detail_sephia->bk,
             'sephiaCDWA' => $detail_sephia->wa,
             'sephiaCDSMS' => $detail_sephia->sms,
@@ -59,6 +68,15 @@ class Wallboard147 extends Controller
         $response['dailyInterval'] = $this->daily_interval();
 
         return response()->json($response, 200);
+    }
+
+    function percentage($value, $divider)
+    {
+        if ($divider == 0) {
+            return 0;
+        } else {
+            return floor(($value / $divider) * 100);
+        }
     }
 
     function total_skill_cms()
