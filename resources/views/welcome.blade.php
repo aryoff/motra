@@ -22,14 +22,10 @@
                         <div class="card">
                             <div class="card-footer bg-white p-0">
                                 <ul class="nav nav-pills flex-column">
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link"> Smart IVR <span class="float-right text-success"> [%]</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a href="#" class="nav-link"> IVR - Queue <span class="float-right text-success"> [%]</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
                                         <a href="#" class="nav-link"> Agent T1 <span class="float-right text-success"><span id="komplainAcd">0</span> [<span id="percentKomplainAcd">0</span>%]</span>
                                         </a>
@@ -57,10 +53,10 @@
                         <div class="card">
                             <div class="card-footer bg-white p-0">
                                 <ul class="nav nav-pills flex-column">
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a href="#" class="nav-link"> IVR - Queue <span class="float-right text-success"> [%]</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
                                         <a href="#" class="nav-link"> Agent T1 <span class="float-right text-success"><span id="regInfoAcd">0</span> [<span id="percentRegInfoAcd">0</span>%]</span>
                                         </a>
@@ -88,7 +84,7 @@
                             <div class="card-footer bg-white p-0">
                                 <ul class="nav nav-pills flex-column">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"> IVR <span class="float-right text-success"> [%]</span>
+                                        <a href="#" class="nav-link"> IVR Queue<span class="float-right text-success"><span id="totAllIVRQueue">0</span> [<span id="percentSephiaCDAndTotal">0</span> %]</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">

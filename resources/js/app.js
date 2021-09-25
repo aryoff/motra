@@ -15,6 +15,9 @@ window.animate_counter = function (DivIdtoAnimate, targetVal) {
     });
 }
 
+let darkTime = false;
+let themeSwitchFlag = false;
+
 window.populate_data_wallboard = function () {
     $.ajax({
         url: "/get_wallboard_data",
@@ -27,6 +30,18 @@ window.populate_data_wallboard = function () {
             document.getElementById('avgTimeToPickup').innerHTML = data.avgTimeToPickup;
             trafficChart.data = data.dailyInterval;
             trafficChart.update();
+            if (darkTime != (data.singleNum['lastUpdateH'] < 6 || data.singleNum['lastUpdateH'] > 17)) {
+                themeSwitchFlag = !themeSwitchFlag;
+                darkTime = (data.singleNum['lastUpdateH'] < 6 || data.singleNum['lastUpdateH'] > 17);
+            }
+            if (themeSwitchFlag) {
+                if (darkTime) {
+                    document.getElementById("body").classList.add("dark-mode");
+                } else {
+                    document.getElementById("body").classList.remove("dark-mode");
+                }
+                themeSwitchFlag = !themeSwitchFlag;
+            }
         },
         error: function (data) {
             console.log('ERR get_cms_hsplit');

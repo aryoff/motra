@@ -57,6 +57,8 @@ class Wallboard147 extends Controller
             'sephiaCDSisaOrder' => $detail_sephia->onprogress + $detail_sephia->unconsumed,
             'sephiaCDRecall' => $detail_sephia->connected_to_t1,
             'sephiaCD' => $detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk,
+            'totAllIVRQueue' => $detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk,
+            'percentSephiaCDAndTotal' => $this->percentage($detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk, $detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk + $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'sephiaMTDUnconfirmed' => $detail_sephia_mtd_sisa->bk,
             'sephiaMTDWA' => $detail_sephia_mtd_sisa->wa,
             'sephiaMTDSMS' => $detail_sephia_mtd_sisa->sms,
