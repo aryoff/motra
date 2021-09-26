@@ -21,6 +21,7 @@ class Wallboard147 extends Controller
         $detail_sephia_mtd_sisa = $this->detail_sephia_mtd_sisa();
         $detail_ivr = $this->detail_ivr();
         $smart_ivr_keylog = $this->smart_ivr_keylog();
+        $smart_ivr_cust_done = $this->smart_ivr_cust_done();
         date_default_timezone_set('Asia/Jakarta');
         $t = time();
         $response['singleNum'] = array(
@@ -82,10 +83,12 @@ class Wallboard147 extends Controller
             'gamasIna' => $smart_ivr_keylog->gamas_ina,
             'isolirIna' => $smart_ivr_keylog->isolir_ina,
             'fupIna' => $smart_ivr_keylog->fup_ina,
+            'custDoneIna' => $smart_ivr_cust_done->cust_done_ina,
             'fuAgentIna' => $smart_ivr_keylog->fu_agent_ina,
             'gamasEnng' => $smart_ivr_keylog->gamas_eng,
             'isolirEng' => $smart_ivr_keylog->isolir_eng,
             'fupEng' => $smart_ivr_keylog->fup_eng,
+            'custDoneEng' => $smart_ivr_cust_done->cust_done_eng,
             'fuAgentEng' => $smart_ivr_keylog->fu_agent_eng,
             'summaryAnswered' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[5]['acdcalls'],
             'summaryAbandoned' => $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['abncalls'],
@@ -121,6 +124,11 @@ class Wallboard147 extends Controller
     function smart_ivr_keylog()
     {
         return DB::connection('sephia_pgsql')->select("SELECT COALESCE (SUM (CASE WHEN lang='3' AND node='S012' THEN 1 ELSE 0 END),0) AS gamas_ina,COALESCE (SUM (CASE WHEN lang='3' AND node='S013' THEN 1 ELSE 0 END),0) AS isolir_ina,COALESCE (SUM (CASE WHEN lang='3' AND node='S014' THEN 1 ELSE 0 END),0) AS fup_ina,COALESCE (SUM (CASE WHEN lang='13' AND node='S012' THEN 1 ELSE 0 END),0) AS gamas_eng,COALESCE (SUM (CASE WHEN lang='13' AND node='S013' THEN 1 ELSE 0 END),0) AS isolir_eng,COALESCE (SUM (CASE WHEN lang='13' AND node='S014' THEN 1 ELSE 0 END),0) AS fup_eng,COALESCE (SUM (CASE WHEN lang='3' AND node IN ('S900','S901','S902','S903','S904','S905') THEN 1 ELSE 0 END),0) AS fu_agent_ina,COALESCE (SUM (CASE WHEN lang='13' AND node IN ('S900','S901','S902','S903','S904','S905') THEN 1 ELSE 0 END),0) AS fu_agent_eng FROM keylog WHERE DATE :: DATE=CURRENT_DATE")[0];
+    }
+
+    function smart_ivr_cust_done()
+    {
+        return DB::connection('sephia_pgsql')->select("SELECT COALESCE(SUM(CASE WHEN lang='3' THEN 1 ELSE 0 END),0) AS cust_done_ina,COALESCE(SUM(CASE WHEN lang='13' THEN 1 ELSE 0 END),0) AS cust_done_eng FROM keylog WHERE date::date = CURRENT_DATE AND node IN ('S012','S013','S014') AND ani NOT IN (SELECT ani FROM keylog WHERE date::date = CURRENT_DATE AND node IN ('S900','S901','S902','S903','S904','S905'))")[0];
     }
 
     function detail_ivr()
