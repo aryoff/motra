@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Ramsey\Uuid\Type\Integer;
 
 class Wallboard147 extends Controller
 {
@@ -15,6 +13,7 @@ class Wallboard147 extends Controller
             $temp = array();
             $temp['acdcalls'] = $value->acdcalls;
             $temp['abncalls'] = $value->abncalls;
+            $temp['acceptable'] = $value->acceptable;
             $total_skill_cms[$value->split] = $temp;
         }
         $detail_sephia = $this->detail_sephia();
@@ -27,6 +26,7 @@ class Wallboard147 extends Controller
         $response['singleNum'] = array(
             'totalKomplain' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'],
             'percentTotalKomplain' => $this->percentage($total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'] + $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
+            'komplainSL' => $this->percentage($total_skill_cms[2]['acceptable'] + $total_skill_cms[5]['acceptable'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'komplainIna' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'],
             'percentKomplainIna' => $this->percentage($total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'komplainEng' => $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'],
@@ -40,12 +40,14 @@ class Wallboard147 extends Controller
             'komplainAbnIna' => $total_skill_cms[2]['abncalls'],
             'komplainAbnEng' => $total_skill_cms[5]['abncalls'],
             'totalRegInfo' => $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'],
+            'regInfoSL' => $this->percentage($total_skill_cms[53]['acceptable'] + $total_skill_cms[54]['acceptable'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'percentTotalRegInfo' => $this->percentage($total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'] + $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls']),
             'regInfoAcd' => $total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'],
             'percentRegInfoAcd' => $this->percentage($total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'regInfoAbn' => $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['abncalls'],
             'percentRegInfoAbn' => $this->percentage($total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['abncalls'], $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'totAll' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'] + $detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk,
+            'totAllSL' => $this->percentage($total_skill_cms[2]['acceptable'] + $total_skill_cms[5]['acceptable'] + $total_skill_cms[53]['acceptable'] + $total_skill_cms[54]['acceptable'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls']),
             'totAllAcd' => $total_skill_cms[2]['acdcalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'],
             'percentTotAllAcd' => $this->percentage($total_skill_cms[2]['acdcalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[54]['acdcalls'], $total_skill_cms[2]['acdcalls'] + $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['acdcalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['acdcalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['acdcalls'] + $total_skill_cms[54]['abncalls'] + $detail_sephia->onprogress + $detail_sephia->unconsumed + $detail_sephia->connected_to_t1 + $detail_sephia->contacted + $detail_sephia->rna + $detail_sephia->junk),
             'totAllAbn' => $total_skill_cms[2]['abncalls'] + $total_skill_cms[5]['abncalls'] + $total_skill_cms[53]['abncalls'] + $total_skill_cms[54]['abncalls'],
@@ -113,7 +115,7 @@ class Wallboard147 extends Controller
 
     function total_skill_cms()
     {
-        return DB::connection('cms_mysql')->select('SELECT split,SUM(acdcalls) acdcalls,SUM(abncalls) abncalls FROM (SELECT split,SUM(acdcalls) acdcalls,SUM(abncalls) abncalls FROM hsplit WHERE row_date=CURRENT_DATE AND split IN (1,2,3,4,5,6,53,54) GROUP BY split UNION ALL SELECT split,acdcalls,abncalls FROM csplit WHERE split IN (1,2,3,4,5,6,53,54)) csplit GROUP BY split');
+        return DB::connection('cms_mysql')->select('SELECT split,SUM(acdcalls) acdcalls,SUM(abncalls) abncalls,SUM(acceptable) acceptable FROM (SELECT split,SUM(acdcalls) acdcalls,SUM(abncalls) abncalls,SUM(acdcalls1+acdcalls2+acdcalls3+acdcalls4) acceptable FROM hsplit WHERE row_date=CURRENT_DATE AND split IN (1,2,3,4,5,6,53,54) GROUP BY split UNION ALL SELECT split,acdcalls,abncalls,(acdcalls1+acdcalls2+acdcalls3+acdcalls4) acceptable FROM csplit WHERE split IN (1,2,3,4,5,6,53,54)) csplit GROUP BY split');
     }
 
     function avg_time_to_pickup()
@@ -176,8 +178,8 @@ class Wallboard147 extends Controller
             $datas['yAxisID'] = 'A';
             $datas['backgroundColor'] = 'transparent';
             $datas['borderColor'] = '#dc3545';
-            $datas['pointBorderColor'] = '#dc3545';
-            $datas['pointBackgroundColor'] = '#dc3545';
+            $datas['pointBorderColor'] = $datas['borderColor'];
+            $datas['pointBackgroundColor'] = $datas['borderColor'];
             $datas['fill'] = false;
             $datasets[] = $datas;
             $datas['type'] = 'line';
@@ -185,8 +187,8 @@ class Wallboard147 extends Controller
             $datas['yAxisID'] = 'A';
             $datas['backgroundColor'] = 'transparent';
             $datas['borderColor'] = '#28a745';
-            $datas['pointBorderColor'] = '#28a745';
-            $datas['pointBackgroundColor'] = '#28a745';
+            $datas['pointBorderColor'] = $datas['borderColor'];
+            $datas['pointBackgroundColor'] = $datas['borderColor'];
             $datas['fill'] = false;
             $datasets[] = $datas;
             // $datas['type'] = 'line';
@@ -194,8 +196,8 @@ class Wallboard147 extends Controller
             // $datas['yAxisID'] = 'A';
             // $datas['backgroundColor'] = 'transparent';
             // $datas['borderColor'] = '#17a2b8';
-            // $datas['pointBorderColor'] = '#17a2b8';
-            // $datas['pointBackgroundColor'] = '#17a2b8';
+            // $datas['pointBorderColor'] = $datas['borderColor'];
+            // $datas['pointBackgroundColor'] = $datas['borderColor'];
             // $datas['fill'] = false;
             // $datasets[] = $datas;
             $datas['type'] = 'line';
@@ -203,8 +205,8 @@ class Wallboard147 extends Controller
             $datas['yAxisID'] = 'B';
             $datas['backgroundColor'] = 'transparent';
             $datas['borderColor'] = '#0000ff';
-            $datas['pointBorderColor'] = '#0000ff';
-            $datas['pointBackgroundColor'] = '#0000ff';
+            $datas['pointBorderColor'] = $datas['borderColor'];
+            $datas['pointBackgroundColor'] = $datas['borderColor'];
             $datas['fill'] = false;
             $datasets[] = $datas;
             $graph['labels'] = $labels;
