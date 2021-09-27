@@ -84,10 +84,6 @@
                             <div class="card-footer p-0">
                                 <ul class="nav nav-pills flex-column">
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link"> IVR Queue<span class="float-right text-success"><span id="totAllIVRQueue">0</span> [<span id="percentSephiaCDAndTotal">0</span> %]</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="#" class="nav-link"> Service Level <span class="float-right text-success"> <span id="totAllSL">0</span> %</span>
                                         </a>
                                     </li>
@@ -97,6 +93,10 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link"> Abandon <span class="float-right text-success"><span id="totAllAbn">0</span> [<span id="percentTotAllAbn">0</span>%]</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link"> IVR Queue<span class="float-right text-success"><span id="totAllIVRQueue">0</span> [<span id="percentSephiaCDAndTotal">0</span> %]</span>
                                         </a>
                                     </li>
                                 </ul>
