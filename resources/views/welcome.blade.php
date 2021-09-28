@@ -643,7 +643,7 @@
                                         <i class="fas fa-square text-danger" aria-hidden="true"></i> COF </span>
                                     <span class="mr-2">
                                         <i class="fas fa-square text-success" aria-hidden="true"></i> Agent T1 </span>
-                                    <span>
+                                    <span style="display: none;">
                                         <i class="fas fa-square text-info" aria-hidden="true"></i> IVR </span>
                                 </div>
                             </div>
