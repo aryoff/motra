@@ -182,7 +182,7 @@
                                     <span class="info-box-icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Waiting for Agent</span>
-                                        <span class="info-box-number"></span>
+                                        <span class="info-box-number" id="waitingTotal">0</span>
                                     </div>
                                     <span class="info-box-icon" style="display:none">%</span>
                                 </div>
@@ -192,7 +192,7 @@
                                             <span class="info-box-icon bg-fuchsia">ENG</span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Skill</span>
-                                                <span class="info-box-number"></span>
+                                                <span class="info-box-number" id="waitingEng">0</span>
                                             </div>
                                             <span class="info-box-icon" style="display:none">%</span>
                                         </div>
@@ -202,7 +202,7 @@
                                             <span class="info-box-icon bg-purple">INA</span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Skill</span>
-                                                <span class="info-box-number"></span>
+                                                <span class="info-box-number" id="waitingIna">0</span>
                                             </div>
                                             <span class="info-box-icon" style="display:none">%</span>
                                         </div>
@@ -214,11 +214,11 @@
                                             <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Handle by Agent <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link"> Handle by Agent <span class="float-right text-success" id="waitingEngConnected">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success" id="waitingEngAbandon">0</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -230,11 +230,11 @@
                                             <div class="card-footer p-0">
                                                 <ul class="nav nav-pills flex-column">
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Handle by Agent <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link"> Handle by Agent <span class="float-right text-success" id="waitingInaConnected">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success"></span>
+                                                        <a href="#" class="nav-link"> Abandon <span class="float-right text-success" id="waitingInaAbandon">0</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -250,7 +250,7 @@
                                 <div class="info-box mb-3 bg-primary">
                                     <span class="info-box-icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Handle By IVR</span>
+                                        <span class="info-box-text">Handle By IVR Queue</span>
                                         <span class="info-box-number"></span>
                                     </div>
                                     {{-- <span class="info-box-icon">%</span> --}}
@@ -263,7 +263,7 @@
                                                 <span class="info-box-text">Skill</span>
                                                 <span class="info-box-number" id="engIVRTotal">0</span>
                                             </div>
-                                            <span class="info-box-icon"><span id="percentEngIVRTotall">0</span> %</span>
+                                            <span class="info-box-icon"><span id="percentEngIVRTotal">0</span> %</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-12">
@@ -273,7 +273,7 @@
                                                 <span class="info-box-text">Skill</span>
                                                 <span class="info-box-number" id="inaIVRTotal">0</span>
                                             </div>
-                                            <span class="info-box-icon"><span id="percentInaIVRTotall">0</span> %</span>
+                                            <span class="info-box-icon"><span id="percentInaIVRTotal">0</span> %</span>
                                         </div>
                                     </div>
                                 </div>
@@ -319,9 +319,9 @@
                                     <span class="info-box-icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Handling By SMART IVR</span>
-                                        <span class="info-box-number">0</span>
+                                        <span class="info-box-number" id="smartIVRTotal">0</span>
                                     </div>
-                                    <span class="info-box-icon"><span>0</span>%</span>
+                                    <span class="info-box-icon" style="display:none;"><span>0</span>%</span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-12">
@@ -329,9 +329,9 @@
                                             <span class="info-box-icon bg-fuchsia">ENG</span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Skill</span>
-                                                <span class="info-box-number">0</span>
+                                                <span class="info-box-number" id="smartIVREng">0</span>
                                             </div>
-                                            <span class="info-box-icon"><span>0</span>%</span>
+                                            <span class="info-box-icon"><span id="percentSmartIVREng">0</span>%</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-12">
@@ -339,9 +339,9 @@
                                             <span class="info-box-icon bg-purple">INA</span>
                                             <div class="info-box-content">
                                                 <span class="info-box-text">Skill</span>
-                                                <span class="info-box-number">0</span>
+                                                <span class="info-box-number" id="smartIVRIna">0</span>
                                             </div>
-                                            <span class="info-box-icon"><span>0</span> %</span>
+                                            <span class="info-box-icon"><span id="percentSmartIVRIna">0</span> %</span>
                                         </div>
                                     </div>
                                 </div>
@@ -360,6 +360,14 @@
                                                     </li>
                                                     <li class="nav-item">
                                                         <a href="#" class="nav-link py-1"> FUP/QUOTA <span class="float-right text-success" id="fupEng">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#" class="nav-link py-1"> SEGMENTASI <span class="float-right text-success" id="cekSegmentasiEng">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#" class="nav-link py-1"> PROGRESS TIKET <span class="float-right text-success" id="progressTiketEng">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
@@ -388,6 +396,14 @@
                                                     </li>
                                                     <li class="nav-item">
                                                         <a href="#" class="nav-link py-1"> FUP/QUOTA <span class="float-right text-success" id="fupIna">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#" class="nav-link py-1"> SEGMENTASI <span class="float-right text-success" id="cekSegmentasiIna">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="#" class="nav-link py-1"> PROGRESS TIKET <span class="float-right text-success" id="progressTiketIna">0</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
@@ -617,7 +633,7 @@
                                         <span class="text-muted">Traffic Trend Today</span>
                                     </p>
                                 </div>
-                                <div class="position-relative mb-4" style="height:230px;">
+                                <div class="position-relative mb-4" style="height:168px;">
                                     <canvas id="traffic-chart"></canvas>
                                 </div>
                                 <div class="d-flex flex-row justify-content-end">
